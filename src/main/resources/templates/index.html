@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+  </head>
+
+  <body>
+    <section>
+      <!-- Start Slider -->
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/img1.jpg" class="d-block w-100" alt="img1" height="600">
+          </div>
+          <div class="carousel-item">
+            <img src="images/img2.jpg" class="d-block w-100" alt="img2" height="600">
+          </div>
+          <div class="carousel-item">
+            <img src="images/img3.png" class="d-block w-100" alt="img3" height="600">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- End Slider -->
+      <!-- Start Category -->
+      <div class="container">
+        <div class="row">
+          <p class="text-center fs-4">Category</p>
+          <div class="col-md-2">
+            <div class="card rounded-circle shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/category/grocery.png" alt="..." width="65%" height="80px">
+                <p class="text-center fs-4">Grocery</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card rounded-circle shadow p-3 mb-2 bg-body-tertiary rounded">
+              <div class="card-body text-center">
+                <img src="images/category/cloths.png" alt="..." width="65%" height="80px">
+                <p class="text-center fs-4">Fashion</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card rounded-circle shadow p-3 mb-2 bg-body-tertiary rounded">
+              <div class="card-body text-center">
+                <img src="images/category/beauty.png" alt="..." width="65%" height="80px">
+                <p class="text-center fs-4">Beauty</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card rounded-circle shadow p-3 mb-2 bg-body-tertiary rounded">
+              <div class="card-body text-center">
+                <img src="images/category/gadget.png" alt="..." width="65%" height="80px">
+                <p class="text-center fs-4">Electronics</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card rounded-circle shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/category/furniture.png" alt="..." width="65%" height="80px">
+                <p class="text-center fs-4">Furniture</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card rounded-circle shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/category/medicine.png" alt="..." width="65%" height="80px">
+                <p class="text-center fs-4">Medicine</p>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+      <!-- End Category  -->
+
+      <!-- Start Latest Product Module-->
+      <div class="container-fluid bg-light p-3">
+        <div class="row">
+          <p class="text-center fs-4">Latest Products</p>
+          <div class="col-md-2">
+            <div class="card shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/latest_product/hp laptop.png" alt="..." width="80%" height="80px">
+                <p class="text-center">HP Pavilion 16, Enhanced by AI</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/latest_product/hp laptop.png" alt="..." width="80%" height="80px">
+                <p class="text-center">HP Pavilion 16, Enhanced by AI</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/latest_product/hp laptop.png" alt="..." width="80%" height="80px">
+                <p class="text-center">HP Pavilion 16, Enhanced by AI</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/latest_product/hp laptop.png" alt="..." width="80%" height="80px">
+                <p class="text-center">HP Pavilion 16, Enhanced by AI</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/latest_product/hp laptop.png" alt="..." width="80%" height="80px">
+                <p class="text-center">HP Pavilion 16</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card shadow p-3 mb-2 bg-body-tertiary rounded" >
+              <div class="card-body text-center">
+                <img src="images/latest_product/hp laptop.png" alt="..." width="80%" height="80px">
+                <p class="text-center">HP Pavilion 16, Enhanced by AI</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Latest Product Module-->
+    </section>
+   
+  
+  </body>
+</html>
