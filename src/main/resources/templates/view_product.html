@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <section>
+        <div class="container card-sh" style="margin-top: 70px; margin-bottom: 30px;">
+                <div class="col-md-12 p-5">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <img src="/images/latest_product/hp laptop.png" alt="" height="400px" width="400">
+                        </div>
+                        <div class="col-md-6">
+                            <p class="fs-3">HP Pavilion 35.6 cm (14) Laptop 14-dv2015TU, Silver</p>
+                            <p>
+                                <span class="fw-bold"> Description: </span>
+                                <br>HP Laptop, 256gb SSD
+                            </p>
+                            <p>
+                                <span class="fw-bold"> Product Details: </span>
+                                <br>Status: 
+                                <span class="badge bg-success">Available</span>
+                                <span class="badge bg-warning">Out of stock</span>
+                                <br>Category: laptop
+                                <br>Policy: 7 day Replacement and return.
+                            </p>
+                            <p class="fs-5 fw-bold">Price: &#8377;50000
+                                <span class="fs-6 text-decoration-line-through text-secondary">75000</span>
+                                <span class="fs-6 text-success">34%off</span>
+                            </p>
+                            <div class="row">
+                                <div class="col-md-4 text-success text-center p-2">
+                                    <i class="fa-solid fa-money-bill-wave fa-2x"></i>
+                                    <p>Cash on delivery</p>
+                                </div>
+                                <div class="col-md-4 text-danger text-center p-2">
+                                    <i class="fa-solid fa-rotate-left fa-2x"></i>
+                                    <p>Return product</p>
+                                </div>
+                                <div class="col-md-4 text-primary text-center p-2">
+                                    <i class="fa-solid fa-truck fa-2x"></i>
+                                    <p>Free delivery</p>
+                                </div>
+                            </div>
+                            <a class="btn btn-warning col-md-12" href="/viewproduct">Add to cart</a>
+                        </div> 
+                    </div>
+                </div>
+        </div>
+    </section>
+</body>
+
+</html>
