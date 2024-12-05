@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <section>
+        <div class="container mt-2 p-5">
+            <p class="fs-2 fw-bold text-center mt-5">Admin Dashboard</p>
+            <div class="row p-2">
+                <div class="col-md-4 mt-5">
+                    <a href="/admin/addproduct" class="text-decoration-none">
+                        <div class="card card-sh">
+                            <div class="card-body text-center text-primary">
+                                <i class="fa-solid fa-square-plus fa-3x mb-2"></i>
+                                <h4>Add Product</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <a href="/admin/addcategory" class="text-decoration-none">
+                        <div class="card card-sh">
+                            <div class="card-body text-center text-danger">
+                                <i class="fa-solid fa-table-list fa-3x mb-2"></i>
+                                <h4>Add Category</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <a href="" class="text-decoration-none">
+                        <div class="card card-sh">
+                            <div class="card-body text-center text-muted">
+                                <i class="fa-solid fa-user-plus fa-3x mb-2"></i>
+                                <h4>Add Admin</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <a href="" class="text-decoration-none">
+                        <div class="card card-sh">
+                            <div class="card-body text-center text-warning">
+                                <i class="fa-solid fa-book-open fa-3x mb-2"></i>
+                                <h4>view Product</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <a href="" class="text-decoration-none">
+                        <div class="card card-sh">
+                            <div class="card-body text-center text-success">
+                                <i class="fa-solid fa-box-open fa-3x mb-2"></i>
+                                <h4>View Orders</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <a href="" class="text-decoration-none">
+                        <div class="card card-sh">
+                            <div class="card-body text-center text-info">
+                                <i class="fa-solid fa-users fa-3x mb-2"></i>
+                                <h4>View Users</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
