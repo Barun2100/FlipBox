@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+    <section>
+        <div class="container mt-5 p-4">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card card-sh">
+                        <div class="card-header text-center fs-4">Add New Product</div>
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label>Product Name</label>
+                                    <input type="text" name="productname" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label>Product Description </label>
+                                    <textarea  class="form-control"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Select Category</label><select class="form-control">
+                                        <option>---select---</option>
+                                        <option>Cloths</option>
+                                    </select> 
+                                </div>
+                                <div class="mb-3">
+                                    <label>Enter price</label>
+                                    <input type="text" name="productname" class="form-control">
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col">
+                                        <label>Enter stock</label>
+                                        <input type="text" name="stock" class="form-control">
+                                    </div>
+                                    <div class="mb-3 col">
+                                        <label>Upload image</label>
+                                        <input type="file" name="productimage" class="form-control">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary col-md-12">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
