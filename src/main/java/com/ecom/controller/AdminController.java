@@ -10,9 +10,12 @@ import java.nio.file.StandardCopyOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +43,10 @@ public class AdminController {
 		return "admin/add-product";
 	}
 
-	@GetMapping("/addcategory")
-	public String addCategory() {
-		return "admin/add-category";
+	@GetMapping("/category")
+	public String category(Model m) {
+		m.addAttribute("categories", categoryService.getAllCategory());
+		return "admin/category";
 	}
 
 	@PostMapping("/savecategory")
@@ -77,7 +81,59 @@ public class AdminController {
 			}
 		}
 
-		return "redirect:/admin/addcategory";
+		return "redirect:/admin/category";
+	}
+
+	@GetMapping("/deleteCategory/{id}")
+	public String deleteCategory(@PathVariable int id, HttpSession session){
+		boolean deleteCategory = categoryService.deleteCategory(id);
+		if(deleteCategory){
+			session.setAttribute("succMsg", "Category successfully deleted !");
+		}
+		else{
+			session.setAttribute("errorMsg", "Something went wrong");
+		}
+		return "redirect:/admin/category";	
+	}
+
+	@GetMapping("/loadEditCategory/{id}")
+	public String loadEditCategory(@PathVariable int id, Model m){
+		m.addAttribute("category", categoryService.getCategoryById(id));
+		return "admin/edit-category";
+	}
+
+	@PostMapping("/updateCategory")
+	public String updateCategory(@ModelAttribute Category category, @RequestParam("isActive") boolean isActive, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException{
+		
+		Category existCategory = categoryService.getCategoryById(category.getId());
+		
+		String imageName = file.isEmpty() ? existCategory.getImageName() : file.getOriginalFilename();
+		existCategory.setImageName(imageName);
+		
+		if(!ObjectUtils.isEmpty(category)){
+			existCategory.setName(category.getName());
+			existCategory.setActive(isActive);
+		}
+		
+		Category updateCategory = categoryService.saveCategory(existCategory);
+		
+		if(!ObjectUtils.isEmpty(updateCategory)){
+
+			if(!file.isEmpty()){
+				File savefile = new ClassPathResource("static/images").getFile();
+				Path path = Paths.get(savefile.getAbsolutePath()+File.separator+"category"+File.separator+file.getOriginalFilename());
+				
+				System.out.println("The path     :    "+ path);
+				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+			}
+
+			session.setAttribute("succMsg", "Category updated successfully!");
+		}
+		else{
+			session.setAttribute("errorMsg", "Something went wrong!");
+		}
+		
+		return "redirect:/admin/loadEditCategory/"+category.getId();
 	}
 
 }
