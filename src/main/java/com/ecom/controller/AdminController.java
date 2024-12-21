@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecom.model.Category;
+import com.ecom.model.Product;
 import com.ecom.service.CategoryService;
+import com.ecom.service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -33,15 +36,49 @@ public class AdminController {
 	@Autowired
 	private CategoryService categoryService;
 
+	@Autowired
+	private ProductService productService;
+
 	@GetMapping("/")
 	public String index() {
 		return "admin/admin-index";
 	}
 
+	//Start : Product related mappings
+
 	@GetMapping("/addproduct")
-	public String addProduct() {
+	public String addProduct(Model m) {
+		List<Category> categories=categoryService.getAllCategory();
+		m.addAttribute("categories", categories);
 		return "admin/add-product";
 	}
+
+	@PostMapping("/saveproduct")
+	public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image,  HttpSession session) throws IOException {
+		
+		product.setProductImage(image.isEmpty() ? "default.jpg" : image.getOriginalFilename());
+
+		Product saveProduct = productService.saveProduct(product);
+		if(!ObjectUtils.isEmpty(saveProduct)){
+
+			File savefile = new ClassPathResource("static/images").getFile();
+
+			Path path = Paths.get(savefile.getAbsolutePath()+File.separator+"latest_product"+File.separator+image.getOriginalFilename());
+			System.out.println("The path     :    "+ path);
+			Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+			
+			session.setAttribute("succMsg", "Product saved successfully!");
+		}
+		else{
+			session.setAttribute("errorMsg", "Something went wrong!");
+		}
+		return "redirect:/admin/addproduct"; 
+	}
+
+
+	//End : Product related mappings
+
+	//Start : Category related mappings
 
 	@GetMapping("/category")
 	public String category(Model m) {
@@ -135,5 +172,7 @@ public class AdminController {
 		
 		return "redirect:/admin/loadEditCategory/"+category.getId();
 	}
+
+	//End : category related mappings
 
 }
