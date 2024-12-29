@@ -13,6 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 //import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -74,6 +75,47 @@ public class AdminController {
 		}
 		return "redirect:/admin/addproduct"; 
 	}
+
+	@GetMapping("/products")
+	public String viewProduct(Model m){
+		m.addAttribute("products", productService.getAllProducts());
+		return "admin/product";
+	}
+
+	@GetMapping("/deleteProduct/{id}")
+	public String deleteProduct(@PathVariable int id, HttpSession session){
+		boolean deleteProduct = productService.deleteProduct(id);
+		if(deleteProduct){
+			session.setAttribute("succMsg", "Product successfully deleted !");
+		}
+		else{
+			session.setAttribute("errorMsg", "Something went wrong");
+		}
+		return "redirect:/admin/product";	
+	}
+
+	@GetMapping("/loadEditProduct/{id}")
+	public String loadEditProduct(@PathVariable int id, Model m){
+		m.addAttribute("product", productService.getProductById(id));
+		m.addAttribute("categories", categoryService.getAllCategory());
+		return "admin/edit-product";
+	}
+
+	@PostMapping("/editProduct")
+	public String editProduct(@ModelAttribute Product product, @RequestParam ("file") MultipartFile image, HttpSession session, Model m){
+		
+		Product updateProduct = productService.updateProduct(product, image);
+
+		if(!ObjectUtils.isEmpty(updateProduct)){
+			session.setAttribute("succMsg", "Product updated successfully!");
+		}
+		else{
+			session.setAttribute("errorMsg", "Something went wrong!");
+		}
+
+		return "redirect:/admin/loadEditProduct/"+product.getId();
+	}
+
 
 
 	//End : Product related mappings
