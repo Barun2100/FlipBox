@@ -28,6 +28,8 @@
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Price</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Discounted Price</th>
                                 <th scope="col">Stock</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -39,6 +41,8 @@
                                 <td>[[${p.productName}]]</td>
                                 <td>[[${p.productCategory}]]</td>
                                 <td>[[${p.productPrice}]]</td>
+                                <td>[[${p.discount}]]%</td>
+                                <td>[[${p.discountPrice}]]</td>
                                 <td>[[${p.stock}]]</td>
                                 <td>
                                     <a th:href="@{'/admin/loadEditProduct/'+${p.id}}" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen"></i> Edit</a>
