@@ -13,8 +13,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.DeleteMapping;
-//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,6 +56,8 @@ public class AdminController {
 	public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image,  HttpSession session) throws IOException {
 		
 		product.setProductImage(image.isEmpty() ? "default.jpg" : image.getOriginalFilename());
+		product.setDiscount(0);
+		product.setDiscountPrice(product.getProductPrice());
 
 		Product saveProduct = productService.saveProduct(product);
 		if(!ObjectUtils.isEmpty(saveProduct)){
@@ -65,7 +65,7 @@ public class AdminController {
 			File savefile = new ClassPathResource("static/images").getFile();
 
 			Path path = Paths.get(savefile.getAbsolutePath()+File.separator+"latest_product"+File.separator+image.getOriginalFilename());
-			System.out.println("The path     :    "+ path);
+			//System.out.println("The path     :    "+ path);
 			Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			
 			session.setAttribute("succMsg", "Product saved successfully!");
@@ -91,7 +91,7 @@ public class AdminController {
 		else{
 			session.setAttribute("errorMsg", "Something went wrong");
 		}
-		return "redirect:/admin/product";	
+		return "redirect:/admin/products";	
 	}
 
 	@GetMapping("/loadEditProduct/{id}")
@@ -104,13 +104,18 @@ public class AdminController {
 	@PostMapping("/editProduct")
 	public String editProduct(@ModelAttribute Product product, @RequestParam ("file") MultipartFile image, HttpSession session, Model m){
 		
-		Product updateProduct = productService.updateProduct(product, image);
-
-		if(!ObjectUtils.isEmpty(updateProduct)){
-			session.setAttribute("succMsg", "Product updated successfully!");
+		if(product.getDiscount()<0 || product.getDiscount()>100){
+			session.setAttribute("errorMsg", "Invalid discount !!");
 		}
 		else{
-			session.setAttribute("errorMsg", "Something went wrong!");
+			Product updateProduct = productService.updateProduct(product, image);
+
+			if(!ObjectUtils.isEmpty(updateProduct)){
+				session.setAttribute("succMsg", "Product updated successfully!");
+			}
+			else{
+				session.setAttribute("errorMsg", "Something went wrong!");
+			}
 		}
 
 		return "redirect:/admin/loadEditProduct/"+product.getId();
@@ -153,7 +158,7 @@ public class AdminController {
 				File savefile = new ClassPathResource("static/images").getFile();
 				Path path = Paths.get(savefile.getAbsolutePath()+File.separator+"category"+File.separator+file.getOriginalFilename());
 				
-				System.out.println("The path     :    "+ path);
+				//System.out.println("The path     :    "+ path);
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
 				session.setAttribute("succMsg", "saved successfully!");
