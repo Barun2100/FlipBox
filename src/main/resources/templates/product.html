@@ -28,9 +28,8 @@
                                 <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                                   Categories
                                 </a>
-                                <a href="#" class="list-group-item list-group-item-action">Gadget</a>
-                                <a href="#" class="list-group-item list-group-item-action">Cloths</a>
-                                <a href="#" class="list-group-item list-group-item-action">Groceries</a>
+                                <a href="#" th:each = "c:${categories}"
+                                class="list-group-item list-group-item-action">[[${c.name}]]</a> 
                             </div>
                         </div>
                     </div>
@@ -40,14 +39,16 @@
                         <div class="card-body">
                             <p class="fs-3 text-center">Products</p>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3" th:each="p:${products}">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <img src="/images/latest_product/hp laptop.png" alt="">
-                                            <p class="fs-5 text-center">Laptop</p>
+                                            <img th:src="@{'/images/latest_product/'+${p.productImage}}" alt="" width="50%" height="120px">
+                                            <p class="fs-5 text-center">[[${p.productName}]]</p>
                                             <div class="row text-center">
-                                                <p class="fs-6 fw-bold">
-                                                    &#8377;50000 <span class="fs-6 text-success">30% off</span>
+                                                <p class="fs-6 ">
+                                                    <span class="fs-6 fw-bold">&#8377;[[${p.discountPrice}]]</span><br>
+                                                    <span class="fs-6 text-decoration-line-through text-muted">&#8377;[[${p.productPrice}]]</span>
+                                                    <span class="fs-6 fw-bold text-success">[[${p.discount}]]% off</span>
                                                 </p>
                                                 <a class="btn btn-primary col-md-6 offset-md-3" href="/viewproduct">View Details</a>
                                             </div>
@@ -55,48 +56,6 @@
                                     </div>
                                 </div>
                                 <!-- TODO remove this part after backend implmentation -->
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <img src="/images/latest_product/hp laptop.png" alt="">
-                                            <p class="fs-5 text-center">Laptop</p>
-                                            <div class="row text-center">
-                                                <p class="fs-6 fw-bold">
-                                                    &#8377;500 <span class="fs-6 text-success">30% off</span>
-                                                </p>
-                                                <a class="btn btn-primary col-md-6 offset-md-3" href="">View Details</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <img src="/images/latest_product/hp laptop.png" alt="">
-                                            <p class="fs-5 text-center">Laptop</p>
-                                            <div class="row text-center">
-                                                <p class="fs-6 fw-bold">
-                                                    &#8377;500 <span class="fs-6 text-success">30% off</span>
-                                                </p>
-                                                <a class="btn btn-primary col-md-6 offset-md-3" href="">View Details</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <img src="/images/latest_product/hp laptop.png" alt="">
-                                            <p class="fs-5 text-center">Laptop</p>
-                                            <div class="row text-center">
-                                                <p class="fs-6 fw-bold">
-                                                    &#8377;500 <span class="fs-6 text-success">30% off</span>
-                                                </p>
-                                                <a class="btn btn-primary col-md-6 offset-md-3" href="">View Details</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
