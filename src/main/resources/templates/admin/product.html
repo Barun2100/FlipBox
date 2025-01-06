@@ -24,6 +24,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Sl no.</th>
+                                <th scope="col">Active</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Category</th>
@@ -37,6 +38,7 @@
                         <tbody>
                             <tr th:each="p,c:${products}">
                                 <td scope="row">[[${c.count}]]</td>
+                                <td>[[${p.active}]]</td>
                                 <td><img th:src="@{'/images/latest_product/'+${p.productImage}}" width="50px" height="50px"></td>
                                 <td>[[${p.productName}]]</td>
                                 <td>[[${p.productCategory}]]</td>

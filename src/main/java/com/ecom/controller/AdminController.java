@@ -53,11 +53,13 @@ public class AdminController {
 	}
 
 	@PostMapping("/saveproduct")
-	public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image,  HttpSession session) throws IOException {
+	public String saveProduct(@ModelAttribute Product product, @RequestParam("file") MultipartFile image, @RequestParam("active") boolean active, HttpSession session) throws IOException {
 		
 		product.setProductImage(image.isEmpty() ? "default.jpg" : image.getOriginalFilename());
 		product.setDiscount(0);
 		product.setDiscountPrice(product.getProductPrice());
+
+		product.setActive(active);
 
 		Product saveProduct = productService.saveProduct(product);
 		if(!ObjectUtils.isEmpty(saveProduct)){

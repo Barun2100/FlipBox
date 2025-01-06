@@ -19,5 +19,7 @@ public interface ProductService {
     public Product getProductById(int id);
 
     public Product updateProduct(Product product, MultipartFile file);
+
+    public List<Product> getAllActiveProducts();
     
 }
