@@ -13,49 +13,57 @@
                </div>
                <div class="col-md-5 p-4">
                   <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
-                     <div class="card-header">
-                        <p class="fs-4 text-center">Register</p>
+                     <div class="card-header text-center">
+                        <p class="fs-4 ">Register</p>
+                        <th:block th:if="${session.succMsg}">
+                           <p class="text-success fw-bold">[[${session.succMsg}]]</p>
+                           <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
+                        <th:block th:if="${session.errorMsg}">
+                           <p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+                           <th:block th:text="${@commonServiceImpl.removeSessionMessage()}"></th:block>
+                        </th:block>
                      </div>
                      <div class="card-body">
-                        <form>
+                        <form action="/saveuser" method="post" enctype="multipart/form-data">
                            <div class="row">
                               <div class="col">
                                  <label class="form-lable">Full Name</label>
-                                 <input class="form-control" name="name" type="text">
+                                 <input class="form-control" name="userName" type="text">
                               </div>
                               <div class="col">
                                  <label class="form-lable">Mobile</label>
-                                 <input class="form-control" name="mobilenumber" type="number">
+                                 <input class="form-control" name="userPhone" type="number">
                               </div>
                            </div>
                            <div class="mb-1">
                               <label class="form-lable">Email</label>
-                              <input class="form-control" name="email" type="email">
+                              <input class="form-control" name="userEmail" type="email">
                            </div>
                            <div class="row">
                               <div class="col">
                                  <label class="form-lable">Address</label>
-                                 <input class="form-control" name="address" type="text">
+                                 <input class="form-control" name="userAddress" type="text">
                               </div>
                               <div class="col">
                                  <label class="form-lable">City</label>
-                                 <input class="form-control" name="city" type="text">
+                                 <input class="form-control" name="userCity" type="text">
                               </div>
                            </div>
                            <div class="row">
                               <div class="col">
                                  <label class="form-lable">State</label>
-                                 <input class="form-control" name="state" type="text">
+                                 <input class="form-control" name="userState" type="text">
                               </div>
                               <div class="col">
                                  <label class="form-lable">PIN Code</label>
-                                 <input class="form-control" name="pincode" type="number">
+                                 <input class="form-control" name="userPIN" type="number">
                               </div>
                            </div>
                            <div class="row">
                               <div class="col">
                                  <label class="form-lable">Password</label>
-                                 <input class="form-control" name="password" type="password">
+                                 <input class="form-control" name="userPassword" type="password">
                               </div>
                               <div class="col">
                                  <label class="form-lable">Confirm Password</label>
@@ -64,7 +72,7 @@
                            </div>
                            <div class="mb-3">
                               <label class="form-lable">Profile Image</label>
-                              <input class="form-control" name="profile_image" type="file">
+                              <input class="form-control" name="profileImage" type="file">
                            </div>
                            <button type="submit" class="btn bg-primary text-white col-md-12">Register</button>
                         </form>
