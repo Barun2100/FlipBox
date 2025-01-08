@@ -104,7 +104,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/editProduct")
-	public String editProduct(@ModelAttribute Product product, @RequestParam ("file") MultipartFile image, HttpSession session, Model m){
+	public String editProduct(@ModelAttribute Product product, @RequestParam ("userImage") MultipartFile image, HttpSession session, Model m){
 		
 		if(product.getDiscount()<0 || product.getDiscount()>100){
 			session.setAttribute("errorMsg", "Invalid discount !!");
