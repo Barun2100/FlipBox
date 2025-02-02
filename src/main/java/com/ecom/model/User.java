@@ -37,4 +37,6 @@ public class User {
     private String userPIN;
 
     private String userImage;
+
+    private String userRole;
 }
