@@ -241,4 +241,26 @@ public class AdminController {
 
 	//End : category related mappings
 
+	//Start : User related mappings
+	
+	@GetMapping("/user")
+	public String getAllUsers(Model m){
+		List<User> users = userService.getAllUsers("ROLE_USER");
+		m.addAttribute("users", users);
+		return "admin/user";
+	}
+
+	@GetMapping("/updateUserStatus")
+	public String updateUserStatus(@RequestParam boolean status, @RequestParam int id, HttpSession session){
+
+		Boolean userStatus = userService.updateUserStatus(status, id);
+		if(userStatus){
+			session.setAttribute("succMsg", "User status updated successfully!");
+		}
+		else{
+			session.setAttribute("errorMsg", "Something went wrong");
+		}
+		return "redirect:/admin/user";
+	}
+
 }

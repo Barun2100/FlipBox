@@ -1,5 +1,7 @@
 package com.ecom.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,4 +41,12 @@ public class User {
     private String userImage;
 
     private String userRole;
+    
+    private Boolean isEnabled;
+
+    private Boolean isNonLocked;;
+
+    private Integer failedAttempt;
+
+    private Date lockTime;
 }
